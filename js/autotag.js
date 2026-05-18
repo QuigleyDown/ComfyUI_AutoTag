@@ -201,9 +201,14 @@ app.registerExtension({
                     const filesBtn = document.createElement("button");
                     filesBtn.className = "autotag-btn";
                     filesBtn.textContent = "Files ▾";
+
+                    const clearBtn = document.createElement("button");
+                    clearBtn.className = "autotag-btn";
+                    clearBtn.textContent = "Clear";
                     
                     controls.appendChild(randomizeBtn);
                     controls.appendChild(filesBtn);
+                    controls.appendChild(clearBtn);
                     root.appendChild(controls);
                     
                     const container = document.createElement("div");
@@ -270,6 +275,13 @@ app.registerExtension({
                         const shuffled = [...tagsData].sort(() => 0.5 - Math.random());
                         const selected = shuffled.slice(0, Math.min(count, shuffled.length)).map(t => t.tag);
                         widget.value = selected.join(", ");
+                        updatePills();
+                        app.graph.setDirtyCanvas(true);
+                    };
+
+                    clearBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        widget.value = "";
                         updatePills();
                         app.graph.setDirtyCanvas(true);
                     };
