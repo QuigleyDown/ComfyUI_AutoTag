@@ -17,9 +17,14 @@ A sophisticated multi-line text node for ComfyUI that provides weighted autocomp
 * **Visual Clarity:** Easily see and manage long lists of tags without the clutter of raw text.
 
 ### 🎲 Powerful Randomization
-* **Randomize Button:** Instantly generate a set of random tags with a single click.
-* **Density Control:** Use the `max_tags` input to set a limit (1–100) on how many tags are generated.
+* **Random All:** Instantly replaces your current tags with a fresh set of random tags.
+* **Add Random:** Appends a new set of unique random tags to your existing list.
+* **Density Control:** Use the `max_tags` input to set a limit (1–100) on how many tags are generated or added.
 * **Category Scoping:** Randomization respects your selected tag files.
+
+### 🧹 Quick Actions
+* **Clear All:** A dedicated "Clear" button to wipe your entire tag list in one click.
+* **Flexible Filtering:** Autocomplete treats spaces and underscores as interchangeable, making it easy to find tags regardless of how you type them.
 
 ### 📁 Multi-File Library
 * **File Selection Menu:** Click the "Files ▾" button to choose exactly which tag files to use for suggestions and randomization.
@@ -40,8 +45,9 @@ A sophisticated multi-line text node for ComfyUI that provides weighted autocomp
 1. **Add Node:** Search for "Auto Tag Node" in the ComfyUI node menu (Category: `CustomNodes`).
 2. **Type Tags:** Click inside the text area and start typing. Use the autocomplete list to find tags quickly.
 3. **Manage Files:** Click the **Files ▾** button to toggle specific categories on or off.
-4. **Randomize:** Set a value for `max_tags` and click **Randomize** to instantly populate your prompt with varied concepts.
-5. **Connect:** Plug the `STRING` output into any node that accepts text (e.g., CLIP Text Encode).
+4. **Randomize:** Use **Random All** to replace your tags, or **Add Random** to append to them based on the `max_tags` value.
+5. **Clear:** Use the **Clear** button to quickly empty the tag list.
+6. **Connect:** Plug the `STRING` output into any node that accepts text (e.g., CLIP Text Encode).
 
 ## Customizing the Tag Library
 

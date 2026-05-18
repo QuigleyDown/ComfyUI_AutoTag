@@ -375,7 +375,11 @@ app.registerExtension({
                         input.style.height = Math.max(20, input.scrollHeight) + "px";
                         const query = input.value.toLowerCase().trim();
                         if (!query) { autocomplete.style.display = "none"; return; }
-                        filteredTags = tagsData.filter(t => t.tag.toLowerCase().includes(query)).slice(0, 20);
+                        
+                        const regexQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[ _]');
+                        const regex = new RegExp(regexQuery, "i");
+                        filteredTags = tagsData.filter(t => regex.test(t.tag)).slice(0, 20);
+                        
                         if (filteredTags.length === 0) { autocomplete.style.display = "none"; return; }
 
                         autocomplete.innerHTML = "";
