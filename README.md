@@ -2,7 +2,7 @@
 
 A sophisticated multi-line text node for ComfyUI that provides weighted autocompletion, interactive pill-based tag management, and smart randomization features.
 
-![AutoTag Node Preview](screenshot.jpeg) *(Example preview based on recent implementation)*
+![AutoTag Node Preview](screenshot.jpeg)
 
 ## Features
 
@@ -37,7 +37,7 @@ A sophisticated multi-line text node for ComfyUI that provides weighted autocomp
 1. Clone this repository into your ComfyUI `custom_nodes` folder:
    ```bash
    cd ComfyUI/custom_nodes
-   git clone https://github.com/your-username/ComfyUI_AutoTag.git
+   git clone https://github.com/QuigleyDown/ComfyUI_AutoTag.git
    ```
 2. Restart ComfyUI.
 
