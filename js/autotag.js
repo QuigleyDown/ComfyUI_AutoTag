@@ -57,9 +57,20 @@ const STYLE = `
         user-select: none;
         white-space: nowrap;
         border: 1px solid #555;
+        cursor: grab;
+    }
+    .autotag-pill:active {
+        cursor: grabbing;
     }
     .autotag-pill:hover {
         background: #444;
+    }
+    .autotag-pill.dragging {
+        opacity: 0.5;
+        background: #555;
+    }
+    .autotag-pill.drag-over {
+        border: 1px solid #fff;
     }
     .autotag-pill .remove-btn {
         margin-left: 6px;
@@ -231,14 +242,52 @@ app.registerExtension({
                     root.appendChild(container);
                     document.body.appendChild(autocomplete);
 
+                    let draggedTagIndex = -1;
+
                     const updatePills = () => {
                         const currentTags = widget.value.split(",").map(t => t.trim()).filter(t => t !== "");
                         container.querySelectorAll(".autotag-pill").forEach(p => p.remove());
 
-                        currentTags.forEach(tag => {
+                        currentTags.forEach((tag, index) => {
                             const pill = document.createElement("span");
                             pill.className = "autotag-pill";
                             pill.textContent = tag;
+                            pill.draggable = true;
+
+                            pill.ondragstart = (e) => {
+                                draggedTagIndex = index;
+                                pill.classList.add("dragging");
+                                e.dataTransfer.effectAllowed = "move";
+                            };
+
+                            pill.ondragover = (e) => {
+                                e.preventDefault();
+                                e.dataTransfer.dropEffect = "move";
+                                pill.classList.add("drag-over");
+                            };
+
+                            pill.ondragleave = () => {
+                                pill.classList.remove("drag-over");
+                            };
+
+                            pill.ondrop = (e) => {
+                                e.preventDefault();
+                                pill.classList.remove("drag-over");
+                                if (draggedTagIndex !== -1 && draggedTagIndex !== index) {
+                                    const newTags = [...currentTags];
+                                    const [movedTag] = newTags.splice(draggedTagIndex, 1);
+                                    newTags.splice(index, 0, movedTag);
+                                    widget.value = newTags.join(", ");
+                                    updatePills();
+                                    app.graph.setDirtyCanvas(true);
+                                }
+                            };
+
+                            pill.ondragend = () => {
+                                pill.classList.remove("dragging");
+                                draggedTagIndex = -1;
+                            };
+
                             const removeBtn = document.createElement("span");
                             removeBtn.className = "remove-btn";
                             removeBtn.innerHTML = "&times;";

@@ -13,6 +13,7 @@ A sophisticated multi-line text node for ComfyUI that provides weighted autocomp
 
 ### 💊 Pill-Based Tag Management
 * **Interactive UI:** Every tag is displayed as a "pill" with an `×` button for quick removal.
+* **Drag-and-Drop Reordering:** Simply click and drag a tag pill to change its position in the list.
 * **Quick Delete:** Press `Backspace` when the input is empty to delete the last tag.
 * **Visual Clarity:** Easily see and manage long lists of tags without the clutter of raw text.
 
