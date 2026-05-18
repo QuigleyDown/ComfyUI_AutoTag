@@ -194,9 +194,13 @@ app.registerExtension({
                     const controls = document.createElement("div");
                     controls.className = "autotag-controls";
                     
-                    const randomizeBtn = document.createElement("button");
-                    randomizeBtn.className = "autotag-btn";
-                    randomizeBtn.textContent = "Randomize";
+                    const randomAllBtn = document.createElement("button");
+                    randomAllBtn.className = "autotag-btn";
+                    randomAllBtn.textContent = "Random All";
+
+                    const addRandomBtn = document.createElement("button");
+                    addRandomBtn.className = "autotag-btn";
+                    addRandomBtn.textContent = "Add Random";
 
                     const filesBtn = document.createElement("button");
                     filesBtn.className = "autotag-btn";
@@ -206,7 +210,8 @@ app.registerExtension({
                     clearBtn.className = "autotag-btn";
                     clearBtn.textContent = "Clear";
                     
-                    controls.appendChild(randomizeBtn);
+                    controls.appendChild(randomAllBtn);
+                    controls.appendChild(addRandomBtn);
                     controls.appendChild(filesBtn);
                     controls.appendChild(clearBtn);
                     root.appendChild(controls);
@@ -267,7 +272,7 @@ app.registerExtension({
                         app.graph.setDirtyCanvas(true);
                     };
 
-                    randomizeBtn.onclick = (e) => {
+                    randomAllBtn.onclick = (e) => {
                         e.stopPropagation();
                         if (tagsData.length === 0) return;
                         const maxTagsWidget = this.widgets.find(w => w.name === "max_tags");
@@ -275,6 +280,21 @@ app.registerExtension({
                         const shuffled = [...tagsData].sort(() => 0.5 - Math.random());
                         const selected = shuffled.slice(0, Math.min(count, shuffled.length)).map(t => t.tag);
                         widget.value = selected.join(", ");
+                        updatePills();
+                        app.graph.setDirtyCanvas(true);
+                    };
+
+                    addRandomBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        if (tagsData.length === 0) return;
+                        const maxTagsWidget = this.widgets.find(w => w.name === "max_tags");
+                        const count = maxTagsWidget ? maxTagsWidget.value : 10;
+                        const currentTags = widget.value.split(",").map(t => t.trim()).filter(t => t !== "");
+                        const available = tagsData.filter(t => !currentTags.includes(t.tag));
+                        if (available.length === 0) return;
+                        const shuffled = [...available].sort(() => 0.5 - Math.random());
+                        const selected = shuffled.slice(0, Math.min(count, shuffled.length)).map(t => t.tag);
+                        widget.value = [...currentTags, ...selected].join(", ");
                         updatePills();
                         app.graph.setDirtyCanvas(true);
                     };
