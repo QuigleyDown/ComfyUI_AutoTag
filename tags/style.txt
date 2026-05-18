@@ -1,0 +1,102 @@
+cyberpunk, 4500
+watercolor, 3800
+oil painting, 4200
+studio ghibli, 4800
+photorealistic, 5000
+synthwave, 3500
+steampunk, 3200
+art deco, 2800
+vibrant color, 4000
+sketch, 2500
+digital art, 4500
+unreal engine, 4200
+impressionism, 3000
+surrealism, 3400
+pop art, 2600
+minimalism, 2200
+baroque, 2700
+renaissance, 2900
+charcoal drawing, 2400
+pixel art, 3300
+vector art, 3100
+low poly, 2300
+flat design, 2100
+isometric, 3200
+double exposure, 3600
+dark fantasy, 4400
+gothic, 3300
+psychedelic, 3700
+abstract, 2000
+glitch art, 2900
+concept art, 4600
+hyperrealism, 4900
+matte painting, 4100
+anime, 4700
+manga, 4300
+comic book, 3800
+ukiyo-e, 3100
+ink wash, 2800
+papercut, 2500
+claymation, 2400
+3d render, 4500
+octane render, 4400
+ray tracing, 4300
+film noir, 3200
+vintage, 3000
+retro, 3100
+futuristic, 4200
+post-apocalyptic, 3900
+solarpunk, 3400
+biopunk, 3200
+dieselpunk, 3000
+cassette futurism, 2800
+vaporware, 3300
+lo-fi, 3400
+pastel, 3200
+neon, 4000
+monochrome, 2500
+sepia, 2200
+black and white, 2800
+silhouette, 3000
+graffiti, 2700
+street art, 2900
+mosaic, 2400
+stained glass, 3100
+tapestry, 2600
+origami, 2300
+bokeh, 3800
+dramatic lighting, 4500
+volumetric lighting, 4200
+soft focus, 3100
+sharp focus, 4800
+depth of field, 4400
+macro photography, 4100
+landscape photography, 3900
+portrait photography, 4300
+street photography, 3600
+architectural photography, 3400
+fashion photography, 4000
+astrophotography, 3800
+underwater photography, 3500
+high contrast, 3700
+low contrast, 2400
+saturated, 3600
+desaturated, 2800
+muted colors, 3100
+golden hour, 4600
+blue hour, 3900
+midday sun, 3200
+overcast, 3000
+nighttime, 4200
+foggy, 3500
+misty, 3400
+rainy, 3700
+snowy, 3600
+thunderstorm, 3800
+aurora borealis, 4100
+sunset, 4500
+sunrise, 4400
+twilight, 3900
+cosmic, 4300
+ethereal, 4100
+dreamy, 4000

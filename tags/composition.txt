@@ -1,0 +1,101 @@
+close-up, 4800
+wide shot, 4500
+from above, 4200
+from below, 4300
+bird's eye view, 4000
+worm's eye view, 3900
+cinematic lighting, 5000
+dramatic shadows, 4600
+soft lighting, 4100
+harsh lighting, 3500
+backlit, 4400
+rim lighting, 4200
+volumetric fog, 4500
+depth of field, 4700
+bokeh background, 4300
+highly detailed, 4900
+masterpiece, 5000
+best quality, 4800
+ultra-detailed, 4600
+8k wallpaper, 4400
+highres, 4700
+fisheye lens, 3200
+macro lens, 3800
+telephoto lens, 3600
+panoramic shot, 4100
+full body shot, 4500
+upper body shot, 4300
+cowboy shot, 4000
+portrait shot, 4600
+landscape orientation, 4200
+portrait orientation, 4100
+square crop, 3400
+centered, 3800
+rule of thirds, 4200
+symmetrical, 4000
+asymmetrical, 3500
+dynamic pose, 4500
+static pose, 3100
+motion blur, 3700
+long exposure, 3900
+vignette, 3300
+chromatic aberration, 2800
+lens flare, 3600
+bloom effect, 3400
+grainy film, 3100
+noise, 2500
+sharp lines, 4200
+painterly texture, 4000
+smooth gradients, 3800
+intricate details, 4600
+atmospheric perspective, 4100
+vanishing point, 3900
+leading lines, 4000
+framed by nature, 3800
+low angle, 4300
+high angle, 4200
+side view, 4100
+front view, 4400
+back view, 3700
+three-quarter view, 4200
+extreme close-up, 4500
+extreme wide shot, 4100
+eye level, 3900
+tilted frame, 3500
+dutch angle, 3600
+overhead shot, 4000
+point of view, 4200
+first person perspective, 4100
+third person perspective, 3800
+oversized objects, 3400
+miniature scale, 3300
+macro photography, 4200
+microscopic detail, 3900
+cross-section, 3200
+exploded view, 3100
+blueprint style, 3000
+wireframe, 2900
+cel shaded, 4100
+flat shaded, 3200
+soft shadows, 4000
+ambient occlusion, 3800
+subsurface scattering, 4200
+global illumination, 4400
+raytraced shadows, 4300
+physically based rendering, 4500
+hdr, 4100
+dynamic range, 3900
+color graded, 4200
+saturated colors, 3800
+desaturated look, 3400
+monochrome palette, 3200
+complementary colors, 4000
+analogous colors, 3800
+triadic colors, 3600
+warm lighting, 4100
+cool lighting, 4000
+fluorescent lighting, 3200
+candlelight, 3900
+moonlight, 4200
+starlight, 4100
+bioluminescent glow, 4500

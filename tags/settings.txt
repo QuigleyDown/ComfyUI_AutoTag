@@ -1,0 +1,101 @@
+forest, 4500
+ancient ruins, 4200
+abandoned city, 4600
+futuristic city, 4800
+space station, 4300
+underwater city, 4100
+library, 3800
+beach, 3900
+mountain peak, 3700
+desert, 3500
+temple, 4000
+cyberpunk street, 4700
+neon alley, 4400
+meadow, 3600
+mecha hangar, 4200
+alchemy lab, 4000
+cathedral, 4100
+snowy mountain, 3800
+tropical island, 3900
+jungle, 3700
+savanna, 3200
+tundra, 3100
+cave, 3400
+volcano, 3500
+castle, 4500
+village, 3600
+bustling market, 3900
+cozy cafe, 4100
+modern apartment, 3800
+traditional ryokan, 4200
+spaceship bridge, 4400
+alien planet, 4600
+ethereal void, 3300
+floating islands, 4500
+underground bunker, 3700
+steampunk workshop, 4100
+mystical grove, 4300
+flower garden, 3800
+cherry blossom path, 4700
+autumn park, 4000
+graveyard, 3500
+dungeon, 3900
+throne room, 4200
+battlefield, 4100
+ruined church, 3800
+factory, 3400
+laboratory, 3900
+school classroom, 4300
+hospital hallway, 3200
+prison cell, 3000
+sewers, 2800
+train station, 3700
+inside a train, 3600
+airport terminal, 3400
+rooftop, 4200
+balcony, 3800
+clock tower, 4000
+lighthouse, 3900
+pier, 3500
+carnival, 3700
+circus, 3300
+theatre, 3600
+concert stage, 4100
+art gallery, 3800
+museum, 3700
+underwater reef, 4000
+coral forest, 4100
+deep sea, 3900
+stratosphere, 3500
+nebula, 4400
+asteroid belt, 3800
+moon surface, 4200
+mars colony, 4100
+cybernetic garden, 4000
+crystal cave, 4300
+ice palace, 4400
+bamboo forest, 4200
+rice paddies, 3400
+vineyard, 3300
+farmhouse, 3500
+windy cliff, 3800
+waterfall, 4500
+riverbank, 3600
+lakeside, 3700
+swamp, 3200
+oasis, 3800
+canyon, 3500
+mesa, 3100
+prairie, 3300
+suburban street, 3400
+highway, 3600
+gas station, 3200
+diner, 3700
+bar, 3900
+nightclub, 4000
+penthouse, 4300
+attic, 3100
+basement, 2900
+stairwell, 3000
+elevator, 3200
+parking garage, 3100

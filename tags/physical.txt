@@ -1,0 +1,101 @@
+long hair, 4200
+short hair, 3800
+blue eyes, 4500
+green eyes, 4100
+brown eyes, 3900
+red eyes, 3500
+blonde hair, 4300
+black hair, 4400
+brown hair, 4000
+silver hair, 3700
+pink hair, 3600
+blue hair, 3400
+curly hair, 3200
+ponytail, 3500
+twintails, 3600
+braids, 3300
+school uniform, 4800
+armor, 4600
+plate armor, 4200
+leather armor, 3900
+cloak, 3700
+hoodie, 3500
+t-shirt, 3100
+jeans, 3200
+dress, 4500
+summer dress, 4100
+kimono, 4300
+yukata, 3900
+maid outfit, 4400
+cybernetic limb, 3800
+glasses, 4000
+sunglasses, 3200
+smiling, 4700
+frowning, 2800
+angry, 3300
+crying, 3500
+laughing, 4100
+surprised, 3400
+blushing, 4200
+determined, 3900
+sleepy, 3100
+pouting, 3600
+smirk, 4000
+wings, 4500
+angel wings, 4200
+demon wings, 4100
+mechanical wings, 3900
+tail, 3500
+cat ears, 4400
+fox ears, 4200
+elf ears, 4500
+muscular, 3800
+slim, 3700
+tall, 3400
+short, 3200
+tattoos, 3600
+piercings, 3100
+scars, 3300
+freckles, 3800
+glowing eyes, 4100
+fire powers, 4300
+ice powers, 4200
+lightning powers, 4400
+magic circles, 4600
+staff, 3900
+sword, 4700
+katana, 4500
+shield, 3800
+bow and arrow, 4100
+daggers, 3700
+heavy boots, 3200
+sneakers, 3100
+high heels, 3900
+gloves, 3500
+fingerless gloves, 3400
+hat, 3300
+beret, 3100
+crown, 4200
+tiara, 3800
+necklace, 3600
+earrings, 3400
+ring, 3200
+cape, 3900
+belt, 3000
+pouches, 3200
+mask, 3700
+gas mask, 3500
+cybernetic visor, 4000
+halo, 4100
+horns, 4300
+claws, 3600
+fangs, 3800
+pale skin, 3500
+tan skin, 3700
+dark skin, 3800
+freckled face, 3400
+wet hair, 3900
+windblown hair, 4200
+glowing skin, 3600
+transparent clothing, 3100
+lace detail, 3800
