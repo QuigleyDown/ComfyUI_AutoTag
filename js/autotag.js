@@ -313,7 +313,11 @@ app.registerExtension({
                                 editInput.focus();
                                 editInput.select();
 
+                                let isSaved = false;
+
                                 const save = () => {
+                                    if (isSaved) return;
+                                    isSaved = true;
                                     const newVal = editInput.value.trim();
                                     if (newVal && newVal !== tag) {
                                         const newTags = [...currentTags];
@@ -331,7 +335,7 @@ app.registerExtension({
                                         if (!handled) save();
                                     } else if (e.key === "Escape") {
                                         e.stopPropagation();
-                                        editInput.onblur = null;
+                                        isSaved = true;
                                         updatePills();
                                     } else {
                                         if (originalEditOnKeyDown) originalEditOnKeyDown.apply(editInput, [e]);
@@ -340,6 +344,8 @@ app.registerExtension({
                                 editInput.onblur = save;
 
                                 setupAutocomplete(editInput, (newVal) => {
+                                    if (isSaved) return;
+                                    isSaved = true;
                                     if (newVal && newVal !== tag) {
                                         const newTags = [...currentTags];
                                         newTags[index] = newVal;
