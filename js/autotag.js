@@ -589,6 +589,7 @@ app.registerExtension({
                     };
 
                     container.onclick = () => { input.focus(); };
+                    this.updatePills = updatePills;
                     setTimeout(updatePills, 0);
 
                     const onRemoved = this.onRemoved;
@@ -602,6 +603,19 @@ app.registerExtension({
                 }
                 return r;
             };
+        }
+    }
+});
+
+api.addEventListener("autotag.update_tags", ({ detail }) => {
+    const { node_id, tags } = detail;
+    const node = app.graph.getNodeById(node_id);
+    if (node && node.widgets) {
+        const widget = node.widgets.find(w => w.name === "text");
+        if (widget) {
+            widget.value = tags;
+            if (node.updatePills) node.updatePills();
+            app.graph.setDirtyCanvas(true);
         }
     }
 });
