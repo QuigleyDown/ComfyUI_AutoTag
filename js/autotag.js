@@ -154,6 +154,18 @@ const STYLE = `
         font-size: 10px;
         margin-left: 10px;
     }
+    .autotag-pill-edit {
+        background: transparent;
+        border: none;
+        color: inherit;
+        font-size: inherit;
+        font-family: inherit;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        min-width: 20px;
+    }
 `;
 
 function addStyles() {
@@ -288,6 +300,55 @@ app.registerExtension({
                                 draggedTagIndex = -1;
                             };
 
+                            pill.ondblclick = (e) => {
+                                e.stopPropagation();
+                                const editInput = document.createElement("input");
+                                editInput.type = "text";
+                                editInput.value = tag;
+                                editInput.className = "autotag-pill-edit";
+                                pill.textContent = "";
+                                pill.draggable = false;
+                                pill.appendChild(editInput);
+                                editInput.focus();
+                                editInput.select();
+
+                                const save = () => {
+                                    const newVal = editInput.value.trim();
+                                    if (newVal && newVal !== tag) {
+                                        const newTags = [...currentTags];
+                                        newTags[index] = newVal;
+                                        widget.value = newTags.join(", ");
+                                        app.graph.setDirtyCanvas(true);
+                                    }
+                                    updatePills();
+                                };
+
+                                const originalEditOnKeyDown = editInput.onkeydown;
+                                editInput.onkeydown = (e) => {
+                                    if (e.key === "Enter") {
+                                        const handled = originalEditOnKeyDown ? originalEditOnKeyDown.apply(editInput, [e]) : false;
+                                        if (!handled) save();
+                                    } else if (e.key === "Escape") {
+                                        e.stopPropagation();
+                                        editInput.onblur = null;
+                                        updatePills();
+                                    } else {
+                                        if (originalEditOnKeyDown) originalEditOnKeyDown.apply(editInput, [e]);
+                                    }
+                                };
+                                editInput.onblur = save;
+
+                                setupAutocomplete(editInput, (newVal) => {
+                                    if (newVal && newVal !== tag) {
+                                        const newTags = [...currentTags];
+                                        newTags[index] = newVal;
+                                        widget.value = newTags.join(", ");
+                                        app.graph.setDirtyCanvas(true);
+                                    }
+                                    updatePills();
+                                });
+                            };
+
                             const removeBtn = document.createElement("span");
                             removeBtn.className = "remove-btn";
                             removeBtn.innerHTML = "&times;";
@@ -419,61 +480,89 @@ app.registerExtension({
                     let filteredTags = [];
                     let highlightedIndex = -1;
 
-                    input.oninput = () => {
-                        input.style.height = "auto";
-                        input.style.height = Math.max(20, input.scrollHeight) + "px";
-                        const query = input.value.toLowerCase().trim();
-                        if (!query) { autocomplete.style.display = "none"; return; }
-                        
-                        const regexQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[ _]');
-                        const regex = new RegExp(regexQuery, "i");
-                        filteredTags = tagsData.filter(t => regex.test(t.tag)).slice(0, 20);
-                        
-                        if (filteredTags.length === 0) { autocomplete.style.display = "none"; return; }
+                    const setupAutocomplete = (targetInput, onSelect) => {
+                        targetInput.oninput = () => {
+                            if (targetInput.tagName === "TEXTAREA") {
+                                targetInput.style.height = "auto";
+                                targetInput.style.height = Math.max(20, targetInput.scrollHeight) + "px";
+                            }
+                            const query = targetInput.value.toLowerCase().trim();
+                            if (!query) { autocomplete.style.display = "none"; return; }
+                            
+                            const regexQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[ _]');
+                            const regex = new RegExp(regexQuery, "i");
+                            filteredTags = tagsData.filter(t => regex.test(t.tag)).slice(0, 20);
+                            
+                            if (filteredTags.length === 0) { autocomplete.style.display = "none"; return; }
 
-                        autocomplete.innerHTML = "";
-                        highlightedIndex = 0;
-                        filteredTags.forEach((t, i) => {
-                            const item = document.createElement("div");
-                            item.className = "autotag-autocomplete-item";
-                            if (i === highlightedIndex) item.classList.add("highlighted");
-                            item.innerHTML = `<span>${t.tag}</span><span class="weight">${t.weight}</span>`;
-                            item.onclick = (e) => {
-                                e.stopPropagation();
-                                addTag(t.tag);
-                                input.focus();
-                            };
-                            autocomplete.appendChild(item);
-                        });
+                            autocomplete.innerHTML = "";
+                            highlightedIndex = 0;
+                            filteredTags.forEach((t, i) => {
+                                const item = document.createElement("div");
+                                item.className = "autotag-autocomplete-item";
+                                if (i === highlightedIndex) item.classList.add("highlighted");
+                                item.innerHTML = `<span>${t.tag}</span><span class="weight">${t.weight}</span>`;
+                                item.onclick = (e) => {
+                                    e.stopPropagation();
+                                    onSelect(t.tag);
+                                    targetInput.focus();
+                                };
+                                autocomplete.appendChild(item);
+                            });
 
-                        const rect = input.getBoundingClientRect();
-                        autocomplete.style.left = rect.left + "px";
-                        autocomplete.style.top = rect.bottom + "px";
-                        autocomplete.style.width = Math.max(200, rect.width) + "px";
-                        autocomplete.style.display = "block";
+                            const rect = targetInput.getBoundingClientRect();
+                            autocomplete.style.left = rect.left + "px";
+                            autocomplete.style.top = rect.bottom + "px";
+                            autocomplete.style.width = Math.max(200, rect.width) + "px";
+                            autocomplete.style.display = "block";
+                        };
+
+                        const originalOnKeyDown = targetInput.onkeydown;
+                        targetInput.onkeydown = (e) => {
+                            if (e.key === "Enter") {
+                                if (autocomplete.style.display !== "none" && highlightedIndex >= 0) {
+                                    e.preventDefault();
+                                    onSelect(filteredTags[highlightedIndex].tag);
+                                    return true;
+                                }
+                            } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                                if (autocomplete.style.display !== "none") {
+                                    e.preventDefault();
+                                    const delta = e.key === "ArrowDown" ? 1 : -1;
+                                    highlightedIndex = (highlightedIndex + delta + filteredTags.length) % filteredTags.length;
+                                    autocomplete.querySelectorAll(".autotag-autocomplete-item").forEach((item, i) => {
+                                        item.classList.toggle("highlighted", i === highlightedIndex);
+                                        if (i === highlightedIndex) item.scrollIntoView({ block: "nearest" });
+                                    });
+                                    return true;
+                                }
+                            } else if (e.key === "Escape") {
+                                if (autocomplete.style.display !== "none") {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    autocomplete.style.display = "none";
+                                    return true;
+                                }
+                            }
+                            if (originalOnKeyDown) return originalOnKeyDown.apply(targetInput, [e]);
+                            return false;
+                        };
+
+                        const originalBlur = targetInput.onblur;
+                        targetInput.onblur = (e) => {
+                            setTimeout(() => { 
+                                autocomplete.style.display = "none";
+                                if (originalBlur) originalBlur.apply(targetInput, [e]);
+                            }, 150);
+                        };
                     };
 
-                    input.onkeydown = (e) => {
-                        if (e.key === "Enter") {
-                            e.preventDefault();
-                            if (autocomplete.style.display !== "none" && highlightedIndex >= 0) {
-                                addTag(filteredTags[highlightedIndex].tag);
-                            } else {
-                                addTag(input.value);
-                            }
-                        } else if (e.key === ",") {
+                    setupAutocomplete(input, (tag) => { addTag(tag); });
+
+                    input.addEventListener("keydown", (e) => {
+                        if (e.key === ",") {
                             e.preventDefault();
                             addTag(input.value);
-                        } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-                            if (autocomplete.style.display !== "none") {
-                                e.preventDefault();
-                                const delta = e.key === "ArrowDown" ? 1 : -1;
-                                highlightedIndex = (highlightedIndex + delta + filteredTags.length) % filteredTags.length;
-                                autocomplete.querySelectorAll(".autotag-autocomplete-item").forEach((item, i) => {
-                                    item.classList.toggle("highlighted", i === highlightedIndex);
-                                    if (i === highlightedIndex) item.scrollIntoView({ block: "nearest" });
-                                });
-                            }
                         } else if (e.key === "Backspace" && input.value === "") {
                             const currentTags = widget.value.split(",").map(t => t.trim()).filter(t => t !== "");
                             if (currentTags.length > 0) {
@@ -482,12 +571,22 @@ app.registerExtension({
                                 updatePills();
                                 app.graph.setDirtyCanvas(true);
                             }
-                        } else if (e.key === "Escape") {
-                            autocomplete.style.display = "none";
+                        }
+                    });
+
+                    const originalInputOnKeyDown = input.onkeydown;
+                    input.onkeydown = (e) => {
+                        if (e.key === "Enter") {
+                            const handled = originalInputOnKeyDown ? originalInputOnKeyDown.apply(input, [e]) : false;
+                            if (!handled) {
+                                e.preventDefault();
+                                addTag(input.value);
+                            }
+                        } else {
+                            if (originalInputOnKeyDown) originalInputOnKeyDown.apply(input, [e]);
                         }
                     };
 
-                    input.onblur = () => { setTimeout(() => { autocomplete.style.display = "none"; }, 150); };
                     container.onclick = () => { input.focus(); };
                     setTimeout(updatePills, 0);
 
