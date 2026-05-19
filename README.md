@@ -33,6 +33,9 @@ A sophisticated multi-line text node for ComfyUI that provides weighted autocomp
 * **Category Scoping:** Organize your tags into specialized files (e.g., `style.txt`, `physical.txt`, `settings.txt`).
 * **Easy Customization:** Add your own `.txt` files to the `tags/` folder to instantly expand your library.
 
+### 🔌 External Input Support
+* **Input Text:** The node accepts an optional `input_text` string. Any tags passed this way are automatically processed and merged with your manual tags, ensuring no duplicates.
+
 ## Installation
 
 1. Clone this repository into your ComfyUI `custom_nodes` folder:

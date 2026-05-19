@@ -257,7 +257,8 @@ app.registerExtension({
                     let draggedTagIndex = -1;
 
                     const updatePills = () => {
-                        const currentTags = widget.value.split(",").map(t => t.trim()).filter(t => t !== "");
+                        const val = widget.value || "";
+                        const currentTags = val.split(",").map(t => t.trim()).filter(t => t !== "");
                         container.querySelectorAll(".autotag-pill").forEach(p => p.remove());
 
                         currentTags.forEach((tag, index) => {
